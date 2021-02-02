@@ -382,10 +382,43 @@ summary {
 
 <div id="task-1" class="section level2">
 <h2>Task 1</h2>
-<pre class="r"><code>mh_distance &lt;- function() {
-  
-  # body of your function goes here...
-  
+<p>return exits the function unlistgoes to a vector</p>
+<pre class="r"><code>mh_distance &lt;- function(x, y) {
+  if (typeof(x) != typeof(y))
+    {warning(&quot;x and y are not both logical, numeric, or character&quot;)
+    return(-1)}
+  if ((is.infinite(x) == TRUE) || (is.infinite(y) == TRUE) || 
+      (is.nan(x) == TRUE) || (is.nan(y) == TRUE) ||
+      (is.na(x) == TRUE) || (is.na(y) == TRUE))
+    {warning(&quot;x or y take an Na, NaN, Inf, or -Inf&quot;)
+    return(-1)}
+  if (nchar(x) != nchar(y))
+    {warning(&quot;x and y do not have the same number of digits or letters&quot;)
+    return(-1)}
+  if ((is.numeric(x) == TRUE) &amp; (is.numeric(y) == TRUE))
+    if ((x %% 1 != 0) || (y %% 1 != 0))
+    {warning(&quot;x or y contains decimal values&quot;)
+    return(-1)}
+  if (typeof(x) == &quot;character&quot;)
+    {xasalist = strsplit(x, &quot;&quot;)
+    yasalist = strsplit(y, &quot;&quot;)
+    xasavector = unlist(xasalist)
+    yasavector = unlist(yasalist)
+    numtruefalse = xasavector != yasavector
+    return(sum(numtruefalse, na.rm = TRUE))}
+  if (typeof(x) == &quot;double&quot;)
+    {xchar = toString(x)
+    ychar = toString(y)
+    xasalist = strsplit(xchar, &quot;&quot;)
+    yasalist = strsplit(ychar, &quot;&quot;)
+    xasavector = unlist(xasalist)
+    yasavector = unlist(yasalist)
+    numtruefalse = xasavector != yasavector
+    return(sum(numtruefalse, na.rm = TRUE))}
+  if (typeof(x) == &quot;logical&quot;)
+    {if ((x &amp; y == TRUE) || (x &amp; y == FALSE))
+      {return (0)}
+    return(1)}
 }</code></pre>
 </div>
 <div id="task-2" class="section level2">
