@@ -392,7 +392,7 @@ summary {
       (is.na(x) == TRUE) || (is.na(y) == TRUE))
     {warning(&quot;x or y take an Na, NaN, Inf, or -Inf&quot;)
     return(-1)}
-  if (nchar(x) != nchar(y))
+  if ((nchar(x) != nchar(y)) &amp; (typeof(x) != &quot;logical&quot;))
     {warning(&quot;x and y do not have the same number of digits or letters&quot;)
     return(-1)}
   if ((is.numeric(x) == TRUE) &amp; (is.numeric(y) == TRUE))
@@ -430,21 +430,42 @@ mh_distance(x = T, y = FALSE)
 mh_distance(x = &quot;523890&quot;, y = &quot;752839&quot;)
 mh_distance(x = 2341, y = 2350)</code></pre>
 <p>Added test cases that return a non-negative modified Hamming distance result.</p>
-<pre class="r"><code># additional test cases go here</code></pre>
+<pre class="r"><code>mh_distance(x = &quot;trees&quot;, y = &quot;bryss&quot;)</code></pre>
+<pre><code>[1] 3</code></pre>
+<pre class="r"><code>mh_distance(x = F, y = FALSE)</code></pre>
+<pre><code>[1] 1</code></pre>
+<pre class="r"><code>mh_distance(x = 3362863711, y = 3362863722)</code></pre>
+<pre><code>[1] 2</code></pre>
+<pre class="r"><code>mh_distance(x = &quot;hi34two&quot;, y = &quot;hey45w2&quot;)</code></pre>
+<pre><code>[1] 4</code></pre>
 <p><strong>Initial test cases</strong> (return values of <code>-1</code>)</p>
 <pre class="r"><code>mh_distance(x = 52, y = 113)
 mh_distance(x = &quot;swimming&quot;, y = &quot;winning&quot;)
 mh_distance(x = NA, y = TRUE)
 mh_distance(x = 1.5, y = 2.5)</code></pre>
 <p>Added test cases that return a value of <code>-1</code>.</p>
-<pre class="r"><code># additional test cases go here</code></pre>
+<pre class="r"><code>mh_distance(x = 49765, y = 23)</code></pre>
+<pre><code>Warning in mh_distance(x = 49765, y = 23): x and y do not have the same number
+of digits or letters</code></pre>
+<pre><code>[1] -1</code></pre>
+<pre class="r"><code>mh_distance(x = Inf, y = &quot;hellomynameissophie&quot;)</code></pre>
+<pre><code>Warning in mh_distance(x = Inf, y = &quot;hellomynameissophie&quot;): x and y are not both
+logical, numeric, or character</code></pre>
+<pre><code>[1] -1</code></pre>
+<pre class="r"><code>mh_distance(&quot;today&quot;, &quot;yesterday&quot;)</code></pre>
+<pre><code>Warning in mh_distance(&quot;today&quot;, &quot;yesterday&quot;): x and y do not have the same
+number of digits or letters</code></pre>
+<pre><code>[1] -1</code></pre>
+<pre class="r"><code>mh_distance(x = TRUE, y = 23)</code></pre>
+<pre><code>Warning in mh_distance(x = TRUE, y = 23): x and y are not both logical, numeric,
+or character</code></pre>
+<pre><code>[1] -1</code></pre>
 </div>
 <div id="task-3" class="section level2">
 <h2>Task 3</h2>
 <p>Consider the pair of vectors <code>s</code> and <code>w</code> given below.</p>
 <pre class="r"><code>s &lt;- c(26, 50123, 456.12, 8, 0)
 w &lt;- c(22, 50000, 451.00, 88, 0)</code></pre>
-<pre class="r"><code># loop goes here</code></pre>
 </div>
 <div id="task-4" class="section level2">
 <h2>Task 4</h2>
