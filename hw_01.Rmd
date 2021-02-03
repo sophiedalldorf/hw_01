@@ -103,15 +103,23 @@ mh_distance(x = TRUE, y = 23)
 
 Consider the pair of vectors `s` and `w` given below.
 
+
+Function mh_distance() is not vectorized. Write a loop to compute the modified Hamming distance for the pair of vectors given in the R Markdown file. For those element pairs that have a valid modified Hamming distance (not -1), a statement should be printed stating the distance for the given pair. An example is given below.
+
+```{r}
+vectorized_mh_distance <- function(s, w) {
+  for (i in 1:length(s))
+    if (length(s) == length(w))
+      {paste0("The modified Hamming distance between", s[i], "and", w[i], "is", mh_distance(s[i], w[i]))}
+}
+```
+
+
 ```{r}
 s <- c(26, 50123, 456.12, 8, 0)
 w <- c(22, 50000, 451.00, 88, 0)
+vectorized_mh_distance(s, w)
 ```
-
-```{r}
-
-```
-
 
 ## Task 4
 

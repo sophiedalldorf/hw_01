@@ -464,8 +464,20 @@ or character</code></pre>
 <div id="task-3" class="section level2">
 <h2>Task 3</h2>
 <p>Consider the pair of vectors <code>s</code> and <code>w</code> given below.</p>
+<p>Function mh_distance() is not vectorized. Write a loop to compute the modified Hamming distance for the pair of vectors given in the R Markdown file. For those element pairs that have a valid modified Hamming distance (not -1), a statement should be printed stating the distance for the given pair. An example is given below.</p>
+<pre class="r"><code>vectorized_mh_distance &lt;- function(s, w) {
+  for (i in 1:length(s))
+    if (length(s) == length(w))
+      {paste0(&quot;The modified Hamming distance between&quot;, s[i], &quot;and&quot;, w[i], &quot;is&quot;, mh_distance(s[i], w[i]))}
+}</code></pre>
 <pre class="r"><code>s &lt;- c(26, 50123, 456.12, 8, 0)
-w &lt;- c(22, 50000, 451.00, 88, 0)</code></pre>
+w &lt;- c(22, 50000, 451.00, 88, 0)
+vectorized_mh_distance(s, w)</code></pre>
+<pre><code>Warning in mh_distance(s[i], w[i]): x and y do not have the same number of
+digits or letters
+
+Warning in mh_distance(s[i], w[i]): x and y do not have the same number of
+digits or letters</code></pre>
 </div>
 <div id="task-4" class="section level2">
 <h2>Task 4</h2>
