@@ -10,8 +10,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 ```
 
 ## Task 1
-return exits the function
-unlistgoes to a vector
+
 ```{r mh_distance_function}
 mh_distance <- function(x, y) {
   if (typeof(x) != typeof(y))
@@ -46,7 +45,7 @@ mh_distance <- function(x, y) {
     numtruefalse = xasavector != yasavector
     return(sum(numtruefalse, na.rm = TRUE))}
   if (typeof(x) == "logical")
-    {if ((x & y == TRUE) || (x & y == FALSE))
+    {if (((x == TRUE) & (y == TRUE)) || ((x == FALSE) & (y == FALSE)))
       {return (0)}
     return(1)}
 }
@@ -55,16 +54,9 @@ mh_distance <- function(x, y) {
   
 ## Task 2
 
-<i>
-Be sure to remove chunk option `eval=FALSE` in the below code chunks
-once you create `mh_distance()`. Do not include this italicized
-text in your final submission.
-</i>
-
 **Initial test cases** (return a non-negative modified Hamming distance)
 
-```{r eval=FALSE}
-
+```{r test_cases}
 mh_distance(x = "abc", y = "abc")
 mh_distance(x = T, y = FALSE)
 mh_distance(x = "523890", y = "752839")
@@ -73,16 +65,17 @@ mh_distance(x = 2341, y = 2350)
 
 Added test cases that return a non-negative modified Hamming distance result.
 
-```{r}
+```{r my_test_cases}
 mh_distance(x = "trees", y = "bryss")
 mh_distance(x = F, y = FALSE)
 mh_distance(x = 3362863711, y = 3362863722)
 mh_distance(x = "hi34two", y = "hey45w2")
+mh_distance("goodbye", "GOODbye")
 ```
 
 **Initial test cases** (return values of `-1`)
 
-```{r eval=FALSE}
+```{r bad_tests}
 mh_distance(x = 52, y = 113)
 mh_distance(x = "swimming", y = "winning")
 mh_distance(x = NA, y = TRUE)
@@ -91,7 +84,7 @@ mh_distance(x = 1.5, y = 2.5)
 
 Added test cases that return a value of `-1`.
 
-```{r}
+```{r my_bad_tests}
 mh_distance(x = 49765, y = 23)
 mh_distance(x = Inf, y = "hellomynameissophie")
 mh_distance("today", "yesterday")
@@ -101,28 +94,44 @@ mh_distance(x = TRUE, y = 23)
 
 ## Task 3
 
-Consider the pair of vectors `s` and `w` given below.
-
-
-Function mh_distance() is not vectorized. Write a loop to compute the modified Hamming distance for the pair of vectors given in the R Markdown file. For those element pairs that have a valid modified Hamming distance (not -1), a statement should be printed stating the distance for the given pair. An example is given below.
-
-```{r}
+```{r vectorized_mh_distance_function}
 vectorized_mh_distance <- function(a, b) {
   for (i in 1:length(a))
     if (nchar(a[i]) == nchar(b[i]))
-#      {moddist = mh_distance(a[i], b[i])
-      {print(paste0("The modified Hamming distance between ", a[i], " and ", b[i], " is ", mh_distance(a[i], b[i])))
+      {print(paste0("The modified Hamming distance between ", a[i], " and ", 
+                    b[i], " is ", mh_distance(a[i], b[i])))
     }
 }
 ```
 
-
-```{r}
+```{r vectorized_test}
 s <- c(26, 50123, 456.12, 8, 0)
 w <- c(22, 50000, 451.00, 88, 0)
 vectorized_mh_distance(s, w)
 ```
 
 ## Task 4
+
+Include a brief write-up that describes how you approached the problem 
+and constructed your solution for Task 1.
+
+For Task 1, I first wrote a for loop to go through each letter/number of the 
+object, but in office hours, I learned that a for loop in this circumstance 
+would be very inefficient. I switched my strategy to set the items equal to 
+each other through a comparison operator, which gave me True and False outputs. 
+I then realized that I could simply sum the number of True and False these to 
+get the amount of letters/numbers that were the same for character and number 
+objects. To handle invalid inputs, I wrote several if statements that would 
+capture the invalid objects (e.g., if the type of x is not equal to the type of 
+y) and return a warning. Initially, my statements did not do a great job; I got
+errors because I would pass Inf or Nan into nchar, which are invalid inputs for 
+that function. I simply had to switch around the order of the statements until 
+I found one that did not give me errors. One of the weaknesses of my code is 
+that it is pretty verbose. I use plenty of if statements and assign names to 
+several values within my function, which makes it much longer than it needs to 
+be and harder to find errors within 40 lines of code. Hopefully throughout the 
+course I will learn how to be more concise in my coding.
+
+
 
 
