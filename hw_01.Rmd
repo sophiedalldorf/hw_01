@@ -51,7 +51,6 @@ mh_distance <- function(x, y) {
 }
 ```
     
-  
 ## Task 2
 
 **Initial test cases** (return a non-negative modified Hamming distance)
@@ -90,7 +89,6 @@ mh_distance(x = Inf, y = "hellomynameissophie")
 mh_distance("today", "yesterday")
 mh_distance(x = TRUE, y = 23)
 ```
-
 
 ## Task 3
 
@@ -131,7 +129,4 @@ that it is pretty verbose. I use plenty of if statements and assign names to
 several values within my function, which makes it much longer than it needs to 
 be and harder to find errors within 40 lines of code. Hopefully throughout the 
 course I will learn how to be more concise in my coding.
-
-
-
 
